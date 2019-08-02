@@ -1,84 +1,105 @@
-import React, { Component } from 'react';
-import './list.css';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import Swipeout from 'rc-swipeout';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from "react";
+import "./list.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import Swipeout from "rc-swipeout";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { removeList, priorityChange } from "../../actions/main";
 
-class ListCard extends Component {
-	getDate=()=>{
-		let date = new Date(this.props.item.date)
-		const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-		return ({date: date.getDate(), month: month[date.getMonth()]})
-	}
-	goToCard=(item)=>{
-		this.props.priorityChange(item)
-		this.props.history.push('/cart');
-	}
-	render(){
-		console.log(this.getDate());
-		console.log(this.props.data);
-		 
-		return(
-			<div className="list_card">
-				<div className="list_card_date">
-					<h3>{this.getDate().date}</h3>
-					<p>{this.getDate().month}</p>
-				</div>
-				<div className="kk">
-					<Swipeout
-						
-						right={[
-							{
-								text: <FontAwesomeIcon className="fa-times" icon={faTimes}  />,
-								onPress:() => this.props.removeList(this.props.item),
-								style: { backgroundColor: 'red', color: 'white' },
-								className: 'custom-class-2'
-							}
-						]}
-						onOpen={() => console.log('open')}
-						onClose={() => console.log('close')}
-					>
-					<div className="list_card_body" onClick={()=>this.goToCard(this.props.item)}>
-						<div className="list_card_total_items">
-							<h4>{this.props.item.items.length} Item</h4>
-						</div>
-						<div className="list_card_name">
-							<h2>{this.props.item.listName}</h2>
-						</div>
-						<div className="list_card_total">
-							<h3>Rs. {this.props.item.items.map(e=>{
-								return this.props.productItem.fruits.find(lo=>{return lo.productId === e.productId}).price * e.count
-								}).reduce((a,b)=>{return a + b}, 0)}
-							</h3>
-						</div>
-					</div>
-					</Swipeout>
-				</div>
+const ListCard = ({
+  item,
+  removeList,
+  priorityChange,
+  productItem,
+  history
+}) => {
+  const getDate = () => {
+    let date = new Date(item.date);
+    const month = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    return { date: date.getDate(), month: month[date.getMonth()] };
+  };
+  const goToCard = item => {
+    console.log("LIST CARD === ", item);
 
-			</div>
-		)
-	}
-}
+    priorityChange(item);
+    history.push("/cart");
+  };
+  // console.log(getDate());
+  // console.log(data);
+  return (
+    <div className="list_card">
+      <div className="list_card_date">
+        <h3>{getDate().date}</h3>
+        <p>{getDate().month}</p>
+      </div>
+      <div className="kk">
+        <Swipeout
+          right={[
+            {
+              text: <FontAwesomeIcon className="fa-times" icon={faTimes} />,
+              onPress: () => removeList(item),
+              style: { backgroundColor: "red", color: "white" },
+              className: "custom-class-2"
+            }
+          ]}
+          // onOpen={() => console.log('open')}
+          // onClose={() => console.log('close')}
+        >
+          <div className="list_card_body" onClick={() => goToCard(item)}>
+            <div className="list_card_total_items">
+              <h4>{item.items.length} Item</h4>
+            </div>
+            <div className="list_card_name">
+              <h2>{item.listName}</h2>
+            </div>
+            <div className="list_card_total">
+              <h3>
+                Rs.{" "}
+                {item.items
+                  .map(e => {
+                    return (
+                      productItem.fruits.find(lo => {
+                        return lo.productId === e.productId;
+                      }).price * e.count
+                    );
+                  })
+                  .reduce((a, b) => {
+                    return a + b;
+                  }, 0)}
+              </h3>
+            </div>
+          </div>
+        </Swipeout>
+      </div>
+    </div>
+  );
+};
 
-function mapStateToProps(state){
-	return{
-		...state
-	}
-}
+ListCard.prototype = {
+  removeList: PropTypes.func.isRequired,
+  priorityChange: PropTypes.func.isRequired
+};
 
-function mapDispatchToProps(dispatch){
-	return{
-		removeList : (item)=>{
-			const action={type : "REMOVE_LIST", pass : item}
-			dispatch(action);
-		},
-		priorityChange :(item)=>{
-			const action ={type : "CHANGE_PRIORITY", pass : item}
-			dispatch(action);
-		}
-	}
-}
+const mapStateToProps = state => ({
+  productItem: state.main.productItem
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ListCard));
+export default connect(
+  mapStateToProps,
+  { removeList, priorityChange }
+)(withRouter(ListCard));

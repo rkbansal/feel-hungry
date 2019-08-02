@@ -1,65 +1,59 @@
-import React, { Component } from 'react';
-import './shop.css';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import ProductListOption from './ProductListOption';
+import React, { useState } from "react";
+import "./shop.css";
+import { withRouter } from "react-router-dom";
+import ProductListOption from "./ProductListOption";
 
-class ProductsList extends Component {
-	state = {
-		active : ""
-	}
-	routeList = (item)=>{
-		switch (item) {
-			case "Fresh Fruits":
-				this.setState({active:item})
-				return this.props.history.push("/shop/fresh-fruits");
-			case "Dry Fruits":
-				this.setState({active:item})
-				return this.props.history.push("/shop/dry-fruits")
-			case "Fresh Vegetables":
-				this.setState({active:item})
-				return this.props.history.push("/shop/fresh-veg");
-			case "Pre Packed Veg":
-				this.setState({active:item})
-				return this.props.history.push("/shop/pre-packed-ved");
-			case "Sugar N Spice":
-				this.setState({active:item})
-				return this.props.history.push("/shop/sugar-n-spice");
-			default:
-				break;
-		}
-	}
-	render() {
-		var listItems= ["Fresh Fruits","Dry Fruits","Fresh Vegetables","Pre Packed Veg","Sugar N Spice"]
-		return (
-			<div className={(this.props.path==='/')?"product_list_sticky":"product_list"}>
-				<div className="product_list_container">
-					{listItems.map((item,index)=>{
-						return(
-							<ProductListOption
-								key={index}
-								item={item}
-								isActive={this.props.path!=='/' && this.state.active === item}
-								onClick={()=>this.routeList(item)}
-							/>
-						)
-					})}
-				</div>
-			</div>
-		)
-	}
-}
+const ProductsList = ({ history, location }) => {
+  const [state, setState] = useState({ active: "" });
+  const routeList = item => {
+    switch (item) {
+      case "Fresh Fruits":
+        setState({ ...state, active: item });
+        return history.push("/shop/fresh-fruits");
+      case "Dry Fruits":
+        setState({ ...state, active: item });
+        return history.push("/shop/dry-fruits");
+      case "Fresh Vegetables":
+        setState({ ...state, active: item });
+        return history.push("/shop/fresh-veg");
+      case "Pre Packed Veg":
+        setState({ ...state, active: item });
+        return history.push("/shop/pre-packed-ved");
+      case "Sugar N Spice":
+        setState({ ...state, active: item });
+        return history.push("/shop/sugar-n-spice");
+      default:
+        break;
+    }
+  };
 
-function mapStateToProps(state){
-	return{
-		...state
-	}
-}
+  var listItems = [
+    "Fresh Fruits",
+    "Dry Fruits",
+    "Fresh Vegetables",
+    "Pre Packed Veg",
+    "Sugar N Spice"
+  ];
+  return (
+    <div
+      className={
+        location.pathname === "/" ? "product_list_sticky" : "product_list"
+      }
+    >
+      <div className="product_list_container">
+        {listItems.map((item, index) => {
+          return (
+            <ProductListOption
+              key={index}
+              item={item}
+              isActive={location.pathname !== "/" && state.active === item}
+              productClicked={() => routeList(item)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
-function mapDispatchToProps(dispatch){
-	return{
-		
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductsList));
+export default withRouter(ProductsList);

@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
-import './shop.css';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import "./shop.css";
 
-class ProductsListOptions extends Component {
-	render() {
-		return (
-			<div  className="product_list_department" onClick={this.props.onClick}>
-				<p>{this.props.item}</p>
-				<div className={(this.props.isActive)?"underline_active":"underline"}></div>
-			</div>
-		)
-	}
-}
+const ProductsListOptions = ({ productClicked, item, isActive }) => {
+  return (
+    <div className="product_list_department" onClick={productClicked}>
+      <p>{item}</p>
+      <div className={isActive ? "underline_active" : "underline"} />
+    </div>
+  );
+};
 
-export default withRouter(ProductsListOptions);
+export default ProductsListOptions;

@@ -1,14 +1,8 @@
-.space{
-	flex: 1;
-}
-.hide{
-	display: none;
-}
 .home{
-	/* height: calc; */
 	top: 0;
 	position: relative;
 }
+
 
 		/* ONE HEADER */
 

@@ -1,59 +1,59 @@
-import React, { Component } from 'react';
-import './cart.css';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import React from "react";
+import "./cart.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { addToCart, lesToCart } from "../../actions/main";
 
-class CartCard extends Component {
-	render() {
-		return (
-			<div className="cart_card">
-				<div className="cart_card_img">
-					<img src={require('../../data/images/fruits/'+this.props.item.img)} alt={this.props.item.productName}></img>
-				</div>
+const CartCard = ({ item, addToCart, lesToCart }) => {
+  return (
+    <div className="cart_card">
+      <div className="cart_card_img">
+        <img
+          src={require("../../data/images/fruits/" + item.img)}
+          alt={item.productName}
+        />
+      </div>
 
-				<div className="cart_card_item">
-						<div className="cart_card_item_name"><h2>{this.props.item.productName}</h2></div>
-						<div className="cart_card_unit_price">Rs.{this.props.item.price}/{this.props.item.measureIn}</div>
-						<div className="cart_card_total_price">Rs.{this.props.item.price*this.props.item.quantity}</div>
-				</div>
+      <div className="cart_card_item">
+        <div className="cart_card_item_name">
+          <h2>{item.productName}</h2>
+        </div>
+        <div className="cart_card_unit_price">
+          Rs.{item.price}/{item.measureIn}
+        </div>
+        <div className="cart_card_total_price">
+          Rs.{item.price * item.quantity}
+        </div>
+      </div>
 
-				<div className="space"></div>
-				
-				<div className="cart_card_unit">{this.props.item.quantity}{this.props.item.measureIn}</div>
+      <div className="space" />
 
-				<div className="cart_card_plus_minus_btn">
-					<div className="cart_card_minus_btn" onClick={()=>this.props.lesToCart(this.props.item)}>
-						<FontAwesomeIcon className="plus_minus" icon={faMinus} />
-					</div>
-					<div className="cart_card_plus_btn" onClick={()=>this.props.addToCart(this.props.item)}>
-						<FontAwesomeIcon className="plus_minus" icon={faPlus} />
-					</div>
-				</div>
-			
-			</div>
-		)
-	}
-}
+      <div className="cart_card_unit">
+        {item.quantity}
+        {item.measureIn}
+      </div>
 
-function mapStateToProps(state){
-	return{
-		...state
-	}
-}
+      <div className="cart_card_plus_minus_btn">
+        <div className="cart_card_minus_btn" onClick={() => lesToCart(item)}>
+          <FontAwesomeIcon className="plus_minus" icon={faMinus} />
+        </div>
+        <div className="cart_card_plus_btn" onClick={() => addToCart(item)}>
+          <FontAwesomeIcon className="plus_minus" icon={faPlus} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-function mapDispatchToProps(dispatch){
-	return{
-		addToCart : (i)=>{
-			const action ={ type: 'ADD_TO_CART', add: i}
-			dispatch(action);
-		},
-		lesToCart : (i)=>{
-			const action ={ type: 'ADD_TO_CART', les: i}
-			dispatch(action);
-		}
-	}
-}
+CartCard.prototype = {
+  addToCart: PropTypes.func.isRequired,
+  lesToCart: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CartCard));
+export default connect(
+  null,
+  { addToCart, lesToCart }
+)(withRouter(CartCard));
