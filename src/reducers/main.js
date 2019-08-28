@@ -1,9 +1,4 @@
-import {
-  ADD_TO_STATE,
-  SEARCH_HIDE,
-  ADD_TO_CART,
-  REMOVE_FROM_CART
-} from "../actions/types";
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/types";
 
 const productItemsData = require("../data/product.json");
 
@@ -15,17 +10,34 @@ const initialState = {
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
+  let index;
 
   switch (type) {
-    case ADD_TO_STATE:
-      return Object.assign({}, state, { ...payload });
-
-    case SEARCH_HIDE:
-      return Object.assign({}, state, { searchHide: !state.searchHide });
-
     // ADD_TO_CART
     case ADD_TO_CART:
-      return { ...state };
+      if (payload.quantity < payload.available) {
+        payload.quantity === 0
+          ? (payload.quantity = payload.startPoint)
+          : (payload.quantity += payload.variation);
+
+        index = state.cartItems.findIndex(e => {
+          return e.productId === payload.productId;
+        });
+        if (index === -1) {
+          return { ...state, cartItems: [...state.cartItems, payload] };
+        } else {
+          return {
+            ...state,
+            cartItems: [
+              ...state.cartItems.slice(0, index),
+              payload,
+              ...state.cartItems.slice(index + 1)
+            ]
+          };
+        }
+      } else {
+        return { ...state };
+      }
 
     // REMOVE_FROM_CART
     case REMOVE_FROM_CART:
