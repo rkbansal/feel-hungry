@@ -1,16 +1,16 @@
 import React from "react";
 import { Switch } from "react-router";
 import { Route, withRouter } from "react-router-dom";
-
-// import Shop from "../components/shop/Shop";
-// import Cart from "../components/cart/Cart";
+import Landing from "../components/landing/Landing";
+import List from "../components/list/List";
+import Info from "../components/info/Info";
 
 const AppRoute = () => {
   return (
     <Switch>
-      {/* <Route exact path="/" component={Shop} />
-      <Route path="/shop" component={Shop} />
-      <Route path="/cart" component={Cart} /> */}
+      <Route exact path="/" component={Landing} />
+      <Route path="/list" component={List} />
+      <Route path="/info" component={Info} />
     </Switch>
   );
 };

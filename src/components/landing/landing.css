@@ -1,0 +1,10 @@
+.grid {
+  margin: 0 20px;
+}
+.img_container{
+  height: 20px;
+  margin: auto;
+}
+.img{
+  height: 100%;
+}
