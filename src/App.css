@@ -3,11 +3,21 @@
   margin: 0 auto;
   border-left: 1px solid darkgray;
   border-right: 1px solid darkgray;
-	box-shadow: 0px 0px 9px 2px darkgray;
+  box-shadow: 0px 0px 9px 2px darkgray;
   overflow: scroll;
-  height: 100vh ;
+  height: 100vh;
 }
-.App::-webkit-scrollbar{
+.App::-webkit-scrollbar {
   width: 0;
   height: 0;
+}
+.MuiCardContent-root:last-child {
+  padding-bottom: 0 !important;
+}
+.text_area {
+  border: 1px solid black;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  padding: 10px;
+  outline: none;
 }

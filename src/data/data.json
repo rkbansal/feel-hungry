@@ -1,48 +1,79 @@
 [
   {
     "id": 1,
-    "listName": "Weekend List",
-    "priority": 1,
-    "items": [{ "productId": 101, "count": 2 }],
-    "total": 300,
-    "date": "Fri Jan 25 2019 01:17:07 GMT+0530 (IST)"
+    "name": "Kofta Korma",
+    "image": "kofta-korma",
+    "itemOrigin": "North Indian",
+    "itemType" : "Starters",
+    "price": 300,
+    "rating": 4.6,
+    "veg": false,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
   },
   {
     "id": 2,
-    "listName": "Birthday Party",
-    "priority": 0,
-    "items": [
-      { "productId": 101, "count": 2 },
-      { "productId": 104, "count": 5 },
-      { "productId": 103, "count": 1 }
-    ],
-    "total": 213,
-    "date": "Fri Jan 20 2019 04:17:07 GMT+0530 (IST)"
+    "name": "Veg Momo",
+    "image": "veg-momo",
+    "itemOrigin": "Chineese",
+    "itemType" : "Beverages",
+    "price": 213,
+    "rating": 4.3,
+    "veg": true,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
   },
   {
     "id": 3,
-    "listName": "Monthly Grocery",
-    "priority": 0,
-    "items": [
-      { "productId": 102, "count": 2 },
-      { "productId": 103, "count": 5 }
-    ],
-    "total": 645,
-    "date": "Fri Dec 23 2019 01:30:07 GMT+0530 (IST)"
+    "name": "Kadai Paneer",
+    "image": "kadai-paneer",
+    "itemOrigin": "North Indian",
+    "itemType" : "Main Course",
+    "price": 645,
+    "rating": 4.2,
+    "veg": true,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
   },
   {
     "id": 4,
-    "listName": "Mother's Choice",
-    "priority": 0,
-    "items": [
-      { "productId": 106, "count": 2 },
-      { "productId": 108, "count": 5 },
-      { "productId": 103, "count": 1 },
-      { "productId": 104, "count": 1 },
-      { "productId": 109, "count": 1 },
-      { "productId": 107, "count": 1 }
-    ],
-    "total": 238,
-    "date": "Fri Feb 3 2019 19:19:19 GMT+0530 (IST)"
+    "name": "Chicken Drumstick",
+    "image": "chicken-drumstick",
+    "itemOrigin": "North Indian",
+    "itemType" : "Starters",
+    "price": 238,
+    "rating": 4.7,
+    "veg": false,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+  },
+  {
+    "id": 5,
+    "name": "Tandoori Chicken",
+    "image": "tandoori-chicken",
+    "itemOrigin": "North Indian",
+    "itemType" : "Beverages",
+    "price": 412,
+    "rating": 4.6,
+    "veg": false,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+  },
+  {
+    "id": 6,
+    "name": "Idli",
+    "image": "idli",
+    "itemOrigin": "South Indian",
+    "itemType" : "Desert",
+    "price": 288,
+    "rating": 4.3,
+    "veg": true,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+  },
+  {
+    "id": 7,
+    "name": "Dosa",
+    "image": "dosa",
+    "itemOrigin": "South Indian",
+    "itemType" : "Beverages",
+    "price": 148,
+    "rating": 4.9,
+    "veg": true,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
   }
 ]

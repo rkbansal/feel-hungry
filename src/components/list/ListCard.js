@@ -1,16 +1,15 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Ava from "../../data/images/avatar.jpg";
 import {
   Card,
   CardContent,
   Typography,
   Grid,
-  Icon,
   Chip,
   Button,
   Box
 } from "@material-ui/core";
+import "./list.css";
 import StarIcon from "@material-ui/icons/Star";
 
 const useStyles = makeStyles(theme => ({
@@ -27,8 +26,8 @@ const useStyles = makeStyles(theme => ({
     padding: 0
   },
   cover: {
-    width: 100,
-    margin: theme.spacing(2),
+    width: 90,
+    // margin: 2,
     borderRadius: 5
   },
   button: {
@@ -49,21 +48,25 @@ const useStyles = makeStyles(theme => ({
   },
   chip: {
     marginBottom: theme.spacing(2),
-    height: 16
+    height : 16
   }
 }));
 
-const AddItem = ({ item }) => {
+const ListCard = ({item}) => {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
     <Card className={classes.card} style={{ boxShadow: "none" }}>
-      <img
-        src={require(`../../data/images/${item.image}.jpg`)}
-        alt={item.name}
-        className={classes.cover}
-      ></img>
+      <Box
+        boxShadow={3}
+        m={1}
+        p={1}
+        style={{ width: "90px", height: "90px" }}
+        borderRadius={5}
+      >
+        <img src={require(`../../data/images/${item.image}.jpg`)} alt="image" className={classes.cover}></img>
+      </Box>
 
       <div className={classes.details}>
         <CardContent className={classes.content}>
@@ -97,4 +100,4 @@ const AddItem = ({ item }) => {
   );
 };
 
-export default AddItem;
+export default ListCard;

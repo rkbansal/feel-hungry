@@ -2,9 +2,11 @@ import React, { Fragment } from "react";
 import { Typography, Toolbar, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import CoursesCard from "./CoursesCard";
-import Ava from "../../data/images/avatar.jpg";
+import Ava from "../../data/images/tandoori-chicken.jpg";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Courses = () => {
+const Courses = ({ courseList }) => {
   const useStyles = makeStyles(theme => ({
     title: {
       flexGrow: 1,
@@ -12,25 +14,19 @@ const Courses = () => {
     }
   }));
   const classes = useStyles();
-  const arr = [
-    { img: Ava, name: "Starters" },
-    { img: Ava, name: "Main Course" },
-    { img: Ava, name: "Desert" },
-    { img: Ava, name: "Beverages" }
-  ];
 
   return (
     <Fragment>
       <Toolbar>
-        <Typography variant="h5" className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           COURSES
         </Typography>
       </Toolbar>
 
       <div className="grid">
         <Grid container spacing={2}>
-          {arr.map((e, i) => (
-            <CoursesCard key={i} name={e.name} img={e.img} />
+          {courseList.map(ele => (
+            <CoursesCard key={ele} name={ele} img={Ava} />
           ))}
         </Grid>
       </div>
@@ -38,4 +34,8 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+const mapStateToProps = state => ({
+  courseList: state.main.courseList
+});
+
+export default connect(mapStateToProps)(withRouter(Courses));
