@@ -7,8 +7,8 @@
 ## Instructions for running project
 
 ```
-git clone https://github.com/rkbansal/Grocery-App.git
-cd Grocery-App
+git clone https://github.com/rkbansal/feel-hungry.git
+cd feel-hungry
 npm i
 npm start
 
